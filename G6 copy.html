@@ -1,0 +1,84 @@
+<html>
+  <svg width="190px" height="160px">
+    <path d="M10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent" />
+    <path d="M70 10 C 70 20, 120 20, 120 10" stroke="black" fill="transparent" />
+    <path d="M130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent" />
+    <path d="M10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent" />
+    <path d="M70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent" />
+    <path d="M130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent" />
+    <path d="M10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent" />
+    <path d="M70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent" />
+    <path d="M130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent" />
+  </svg>
+
+  <!--  -->
+  <svg width="190px" height="160px">
+    <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent" />
+  </svg>
+  <!--  -->
+
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 绘制路径 -->
+    <path d="M50,50 L100,100 Q125,130 150,100 L200,150" stroke="black" fill="none" />
+    <!-- 标注点 A, B, C, D -->
+    <circle cx="50" cy="50" r="3" fill="red" />
+    <circle cx="100" cy="100" r="3" fill="red" />
+    <circle cx="150" cy="100" r="3" fill="red" />
+    <circle cx="200" cy="50" r="3" fill="red" />
+    <text x="50" y="40" font-family="Verdana" font-size="12" fill="black">A</text>
+    <text x="100" y="90" font-family="Verdana" font-size="12" fill="black">B</text>
+    <text x="150" y="90" font-family="Verdana" font-size="12" fill="black">C</text>
+    <text x="200" y="40" font-family="Verdana" font-size="12" fill="black">D</text>
+  </svg>
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 标注点 A 和 D -->
+    <circle cx="50" cy="50" r="5" fill="red" />
+    <text x="50" y="50" font-family="Verdana" font-size="12" fill="black">A</text>
+    <circle cx="250" cy="50" r="5" fill="blue" />
+    <text x="250" y="50" font-family="Verdana" font-size="12" fill="black">D</text>
+
+    <!-- 计算并标注控制点 P -->
+    <path d="M50,50 Q150,150 250,50" stroke="black" fill="none" />
+    <circle cx="150" cy="150" r="5" fill="green" />
+    <text x="150" y="150" font-family="Verdana" font-size="12" fill="black">P</text>
+  </svg>
+  <!-- xxx -->
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 标注点 A -->
+    <circle cx="50" cy="50" r="3" fill="red" />
+    <text x="50" y="40" font-family="Verdana" font-size="12" fill="black">A</text>
+    <!-- 标注点 D -->
+    <circle cx="250" cy="50" r="3" fill="orange" />
+    <text x="250" y="40" font-family="Verdana" font-size="12" fill="black">D</text>
+
+    <!-- 绘制路径 -->
+    <path d="M50,50 Q150,150 250,50" stroke="black" fill="none" />
+
+    <!-- 计算并标注控制点 P -->
+    <script type="text/ecmascript">
+      <![CDATA[ var x1 = 50, y1 = 50; var x4 = 250, y4 = 50; var radius = 50; var dx = x4 - x1; var dy = y4 - y1; var length = Math.sqrt(dx * dx + dy * dy); var ux = dx / length; var uy = dy / length;
+      var controlX = x1 + ux * radius; var controlY = y1 + uy * radius; var svgNS = "http://www.w3.org/2000/svg"; var circle = document.createElementNS(svgNS, "circle"); circle.setAttribute("cx",
+      controlX); circle.setAttribute("cy", controlY); circle.setAttribute("r", "3"); circle.setAttribute("fill", "green"); document.documentElement.insertBefore(circle,
+      document.getElementById("path")); var text = document.createElementNS(svgNS, "text"); text.setAttribute("x", controlX); text.setAttribute("y", controlY - 5); text.setAttribute("font-family",
+      "Verdana"); text.setAttribute("font-size", "12"); text.setAttribute("fill", "black"); text.textContent = "P"; document.documentElement.insertBefore(text, document.getElementById("path")); ]]>
+    </script>
+  </svg>
+  <!-- sss -->
+  <svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 标注点 A -->
+    <circle cx="50" cy="50" r="3" fill="red" />
+    <text x="50" y="50" font-family="Verdana" font-size="12" fill="black">A</text>
+    <!-- 标注点 B -->
+    <circle cx="100" cy="100" r="3" fill="blue" />
+    <text x="100" y="100" font-family="Verdana" font-size="12" fill="black">B</text>
+    <!-- 标注圆弧点 C -->
+    <circle cx="150" cy="150" r="3" fill="green" />
+    <text x="150" y="150" font-family="Verdana" font-size="12" fill="black">C</text>
+    <!-- 标注点 D -->
+    <circle cx="200" cy="50" r="3" fill="orange" />
+    <text x="200" y="50" font-family="Verdana" font-size="12" fill="black">D</text>
+
+    <!-- 绘制路径 -->
+    <path d="M50,50 L100,100 Q150,150 200,50" stroke="black" fill="none" />
+  </svg>
+</html>

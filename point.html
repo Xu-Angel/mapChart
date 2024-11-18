@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copy Coordinates</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+        /* height: 100vh; */
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        position: relative; /* 允许内部元素使用绝对定位 */
+      }
+
+      .area {
+        /* width: 300px; */
+        /* height: 200px; */
+        background-color: #fff;
+        /* border: 2px solid #000; */
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer; */
+        user-select: none;
+        position: relative; /* 允许内部点元素使用绝对定位 */
+      }
+
+      /* 新增：用于表示点击位置的红色点 */
+      .click-point {
+        width: 10px;
+        height: 10px;
+        background-color: red;
+        border-radius: 50%;
+        position: absolute;
+        pointer-events: none; /* 确保点不会干扰其他点击事件 */
+      }
+    </style>
+  </head>
+  <body>
+    <div id="coordinate-area" class="area">
+      <img src="./地铁图20.png" alt="" />
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const area = document.getElementById('coordinate-area')
+        let clickPoint = null // 用于存储点击点的元素
+        let coordinateDisplay = document.createElement('div') // 新增：用于显示坐标信息的元素
+        // 设置坐标显示元素的样式
+        coordinateDisplay.className = 'coordinate-display'
+        coordinateDisplay.style.position = 'absolute'
+        coordinateDisplay.style.pointerEvents = 'none' // 确保显示框不会干扰鼠标事件
+        coordinateDisplay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)' // 深色背景
+        coordinateDisplay.style.color = '#fff'
+        coordinateDisplay.style.padding = '5px'
+        coordinateDisplay.style.borderRadius = '3px'
+        coordinateDisplay.style.fontSize = '12px'
+        coordinateDisplay.style.display = 'none' // 初始隐藏
+        document.body.appendChild(coordinateDisplay) // 添加到body，以便可以在任何地方定位
+
+        area.addEventListener('mousemove', (event) => {
+          const rect = area.getBoundingClientRect()
+          const x = event.clientX - rect.left
+          const y = event.clientY - rect.top
+
+          // 更新坐标显示元素的位置和内容
+          coordinateDisplay.style.left = `${event.clientX + window.scrollX + 10}px` // 加10px以避免遮挡鼠标
+          coordinateDisplay.style.top = `${event.clientY + window.scrollY + 10}px`
+          coordinateDisplay.textContent = `x:${x.toFixed(1)}, y:${y.toFixed(1)}`
+          coordinateDisplay.style.display = 'block' // 显示坐标信息
+        })
+
+        area.addEventListener('mouseleave', () => {
+          // 鼠标离开区域时隐藏坐标信息
+          coordinateDisplay.style.display = 'none'
+        })
+
+        area.addEventListener('click', (event) => {
+          const rect = area.getBoundingClientRect()
+          const x = event.clientX - rect.left
+          const y = event.clientY - rect.top
+
+          const coordinates = { x: x, y: y }
+          copyCoordinatesToClipboard(coordinates)
+
+          // 如果已经存在点击点，则先移除它
+          if (clickPoint) {
+            area.removeChild(clickPoint)
+          }
+
+          // 创建新的点击点并添加到区域中
+          clickPoint = document.createElement('div')
+          clickPoint.textContent = JSON.stringify(coordinates)
+          clickPoint.className = 'click-point'
+          clickPoint.style.left = `${x - 5}px` // 减去点的一半宽度以居中
+          clickPoint.style.top = `${y - 5}px` // 减去点的一半高度以居中
+          area.appendChild(clickPoint)
+
+          // 可以选择移除或修改以下警告框
+          // alert('Coordinates copied to clipboard: ' + JSON.stringify(coordinates))
+        })
+
+        function copyCoordinatesToClipboard(coordinates) {
+          const text = JSON.stringify(coordinates)
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              console.log('Coordinates copied to clipboard: ', text)
+            })
+            .catch((err) => {
+              console.error('Failed to copy text: ', err)
+            })
+        }
+      })
+    </script>
+  </body>
+</html>

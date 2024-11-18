@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Metro Map</title>
+  </head>
+  <body>
+    <svg id="map" width="800" height="800" style="border: 1px solid black"></svg>
+
+    <script>
+      // 定义节点坐标
+      const nodes = {
+        A: { x: 80, y: 100 },
+        B: { x: 200, y: 250 },
+        C: { x: 350, y: 500 },
+        D: { x: 480, y: 650 },
+      }
+
+      // 计算贝塞尔曲线的控制点
+      function getControlPoints(x1, y1, x2, y2, smoothness = 3) {
+        const dx = x2 - x1
+        const dy = y2 - y1
+        const distance = Math.sqrt(dx * dx + dy * dy)
+        const offset = distance * smoothness
+
+        // 控制点计算
+        const controlPoint1 = { x: x1 + (offset * dx) / distance, y: y1 + (offset * dy) / distance }
+        const controlPoint2 = { x: x2 - (offset * dx) / distance, y: y2 - (offset * dy) / distance }
+
+        return [controlPoint1, controlPoint2]
+      }
+
+      // 在SVG中绘制路径
+      function drawPath(svg, start, end) {
+        const { x: x1, y: y1 } = nodes[start]
+        const { x: x2, y: y2 } = nodes[end]
+        const [cp1, cp2] = getControlPoints(x1, y1, x2, y2)
+
+        // 创建SVG路径元素
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+        path.setAttribute('d', `M ${x1} ${y1} C ${cp1.x} ${cp1.y}, ${cp2.x} ${cp2.y}, ${x2} ${y2}`)
+        path.setAttribute('stroke', 'black')
+        path.setAttribute('fill', 'none')
+
+        svg.appendChild(path)
+        console.trace()
+      }
+
+      // 获取SVG元素
+      const svg = document.getElementById('map')
+
+      // 绘制连接节点的路径
+      drawPath(svg, 'A', 'B')
+      drawPath(svg, 'B', 'C')
+      drawPath(svg, 'C', 'D')
+    </script>
+  </body>
+</html>
