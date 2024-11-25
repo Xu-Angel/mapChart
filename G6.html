@@ -64,16 +64,16 @@
       })
       graph.data(data)
       graph.render()
-// 获取图上的所有节点实例
-const rNodes = graph.getNodes();
-const rEdges = graph.getEdges();
-// 遍历节点实例，将所有节点提前。
-rNodes.forEach((node) => {
-  node.toBack();
-});
-rEdges.forEach((edge) => {
-  edge.toFront();
-});
+      // 获取图上的所有节点实例
+      const rNodes = graph.getNodes()
+      const rEdges = graph.getEdges()
+      // 遍历节点实例，将所有节点提前。
+      rNodes.forEach((node) => {
+        node.toBack()
+      })
+      rEdges.forEach((edge) => {
+        edge.toFront()
+      })
       if (typeof window !== 'undefined')
         window.onresize = () => {
           if (!graph || graph.get('destroyed')) return

@@ -1393,14 +1393,13 @@ function generateBranchLines(mainLinesData) {
     // const startIndex = Math.floor(1 * mainLinePoints.length)
     const startIndex = i
     const startNode = mainLinePoints[startIndex]
-const endIndex = Math.min(startIndex + Math.ceil(Math.random() * mainLinePoints.length),mainLinePoints.length )
-console.log(endIndex,startIndex,mainLinePoints,'0')
+    const endIndex = Math.min(startIndex + Math.ceil(Math.random() * mainLinePoints.length), mainLinePoints.length)
+    console.log(endIndex, startIndex, mainLinePoints, '0')
     // 生成支线数据
-const branchNodes = []
-const branchEdges = []
+    const branchNodes = []
+    const branchEdges = []
     const branchNodeIds = []
     for (let j = 0; j < Math.floor(1 * 3) + 1; j++) {
-
       const branchNode = {
         id: `branch-${i}-node-${j}`,
         label: `Branch Node branch-${i}-node-${j}`,
@@ -1417,38 +1416,38 @@ const branchEdges = []
       branchNodes.push(branchNode)
       branchNodeIds.push(branchNode.id)
     }
-  // 计算坐标
-  branchNodes.forEach((n,i) => {
-    const distance = Math.floor(Math.random() * 50) + 150; // 150-200区间
-    const sn = branchNodes[i-1] || startNode
-    console.log(branchNodes[i-1],startNode,'8989')
- // 确定支线方向（45°）
- // TODO: 计算两个坐标之间的角度
- const angle = Math.PI / 8; 
- console.log(distance * Math.cos(angle),distance * Math.sin(angle),'90')
- // 计算支线节点坐标
- const xStep = Math.min(distance * Math.cos(angle), 100)
- const yStep = Math.min(distance * Math.sin(angle),100)
- // 判断坐标走向TODO:
-//  const d = Math.random() > Math.random() ? -1 : 1
-const d = 1 + Math.random() * 0.5
- n.x = sn.x + xStep *d;
- n.y = sn.y + yStep*d;
-  })
-// 主干开始延伸支点
-  branchEdges.push({
-    source:`line-${mainLineId}-node-${startIndex}`,
-    target: branchNodeIds[0],
-    type: 'polyline',
-    style: {
-      lineWidth: 6,
-      radius: 10,
-    },
-    routeCfg: {
-      //maxAllowedDirectionChange: Math.PI /6
-    }
-  })    
-               
+    // 计算坐标
+    branchNodes.forEach((n, i) => {
+      const distance = Math.floor(Math.random() * 50) + 150 // 150-200区间
+      const sn = branchNodes[i - 1] || startNode
+      console.log(branchNodes[i - 1], startNode, '8989')
+      // 确定支线方向（45°）
+      // TODO: 计算两个坐标之间的角度
+      const angle = Math.PI / 8
+      console.log(distance * Math.cos(angle), distance * Math.sin(angle), '90')
+      // 计算支线节点坐标
+      const xStep = Math.min(distance * Math.cos(angle), 100)
+      const yStep = Math.min(distance * Math.sin(angle), 100)
+      // 判断坐标走向TODO:
+      //  const d = Math.random() > Math.random() ? -1 : 1
+      const d = 1 + Math.random() * 0.5
+      n.x = sn.x + xStep * d
+      n.y = sn.y + yStep * d
+    })
+    // 主干开始延伸支点
+    branchEdges.push({
+      source: `line-${mainLineId}-node-${startIndex}`,
+      target: branchNodeIds[0],
+      type: 'polyline',
+      style: {
+        lineWidth: 6,
+        radius: 10,
+      },
+      routeCfg: {
+        //maxAllowedDirectionChange: Math.PI /6
+      },
+    })
+
     // 连接支线节点
     for (let k = 0; k < branchNodeIds.length - 1; k++) {
       branchEdges.push({
@@ -1475,7 +1474,7 @@ const d = 1 + Math.random() * 0.5
         },
         routeCfg: {
           //maxAllowedDirectionChange: Math.PI /6
-        }
+        },
       })
     }
     allBranchNodes.push(...branchNodes)
@@ -1500,7 +1499,9 @@ function generateDataForLines() {
     size: [[0, 1].includes(idx) ? 120 : 20, 20],
   })
   Object.keys(linesPoints).forEach((line) => {
-    if(line >5) {return}
+    if (line > 5) {
+      return
+    }
     const points = linesPoints[line]
     const idx = line - 1
     points.forEach((point, index) => {
