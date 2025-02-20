@@ -1,0 +1,146 @@
+[
+  {
+    "id": 0,
+    "prevId": null,
+    "nextId": 1,
+    "x": 2,
+    "y": 3,
+    "type": "base",
+    "nextPoint": {
+      "directive": "M",
+      "directiveValue": "2 3"
+    }
+  },
+  {
+    "id": 1,
+    "prevId": 0,
+    "nextId": 2,
+    "x": 172.04,
+    "y": 122.728,
+    "type": "base",
+    "nextPoint": {
+      "directive": "L",
+      "directiveValue": "172.04 122.728"
+    }
+  },
+  {
+    "id": 2,
+    "prevId": 1,
+    "nextId": 3,
+    "x": 6.908,
+    "y": 2.188,
+    "type": "cDirective",
+    "nextDirective": {
+      "directive": "c",
+      "directiveValue": "2.022 1.424 4.435 2.188 6.908 2.188"
+    }
+  },
+  {
+    "id": 3,
+    "prevId": 2,
+    "nextId": 4,
+    "x": 791.275,
+    "y": 2.188,
+    "type": "base",
+    "nextPoint": {
+      "directive": "H",
+      "directiveValue": "791.275"
+    }
+  },
+  {
+    "id": 4,
+    "prevId": 3,
+    "nextId": 5,
+    "x": 6.908,
+    "y": 2.189,
+    "type": "cDirective",
+    "nextDirective": {
+      "directive": "c",
+      "directiveValue": "2.473 0 4.886 0.765 6.908 2.189"
+    }
+  },
+  {
+    "id": 5,
+    "prevId": 4,
+    "nextId": 6,
+    "x": 846.214,
+    "y": 160.924,
+    "type": "base",
+    "nextPoint": {
+      "directive": "L",
+      "directiveValue": "846.214 160.924"
+    }
+  },
+  {
+    "id": 6,
+    "prevId": 5,
+    "nextId": 7,
+    "x": 6.909,
+    "y": 2.188,
+    "type": "cDirective",
+    "nextDirective": {
+      "directive": "c",
+      "directiveValue": "2.022 1.424 4.435 2.188 6.909 2.188"
+    }
+  },
+  {
+    "id": 7,
+    "prevId": 6,
+    "nextId": 8,
+    "x": 956.015,
+    "y": 2.188,
+    "type": "base",
+    "nextPoint": {
+      "directive": "H",
+      "directiveValue": "956.015"
+    }
+  },
+  {
+    "id": 8,
+    "prevId": 7,
+    "nextId": 9,
+    "x": 6.909,
+    "y": 2.188,
+    "type": "cDirective",
+    "nextDirective": {
+      "directive": "c",
+      "directiveValue": "2.473 0 4.886 0.765 6.909 2.188"
+    }
+  },
+  {
+    "id": 9,
+    "prevId": 8,
+    "nextId": 10,
+    "x": 1043.18,
+    "y": 221.812,
+    "type": "base",
+    "nextPoint": {
+      "directive": "L",
+      "directiveValue": "1043.18 221.812"
+    }
+  },
+  {
+    "id": 10,
+    "prevId": 9,
+    "nextId": 11,
+    "x": 6.91,
+    "y": 2.188,
+    "type": "cDirective",
+    "nextDirective": {
+      "directive": "c",
+      "directiveValue": "2.02 1.424 4.44 2.188 6.91 2.188"
+    }
+  },
+  {
+    "id": 11,
+    "prevId": 10,
+    "nextId": null,
+    "x": 1176,
+    "y": 2.188,
+    "type": "base",
+    "nextPoint": {
+      "directive": "H",
+      "directiveValue": "1176"
+    }
+  }
+]

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tutorial Demo</title>
+    <style>
+      #container {
+        width: 80vw;
+      }
+    </style>
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1176" height="227" viewBox="0 0 1176 227" fill="none">
+      <path
+        d="M2 3L172.04 122.728c2.022 1.424 4.435 2.188 6.908 2.188H791.275c2.473 0 4.886 0.765 6.908 2.189L846.214 160.924c2.022 1.424 4.435 2.188 6.909 2.188H956.015c2.473 0 4.886 0.765 6.909 2.188L1043.18 221.812c2.02 1.424 4.44 2.188 6.91 2.188H1176"
+        stroke="#00C29F"
+        stroke-width="5" />
+    </svg>
+    <div id="container"></div>
+    <script src="../g6.min.js"></script>
+    <script src="./data.js"></script>
+    <script>
+      var data = window.data
+      console.log(data, 'dd')
+      const container = document.getElementById('container')
+      const width = container.scrollWidth
+      const height = window.innerHeight
+      // {"x":3502,"y":1999}
+      const graph = new G6.Graph({
+        container: 'container',
+        width: 1800,
+        height: 1800,
+        fitView: true,
+        renderer: 'svg',
+        modes: {
+          default: ['drag-canvas', 'drag-node'],
+        },
+        modes: {
+          //
+          default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+        },
+        animate: true,
+        defaultNode: {
+          // size: [20, 20],
+          // type: 'circle',
+          // style: {
+          //   lineWidth: 2,
+          //   stroke: '#5B8FF9',
+          //   fill: '#C6E5FF',
+          // },
+          labelCfg: {
+            position: 'bottom',
+            offset: 10,
+            style: {
+              fill: '#666',
+            },
+          },
+        },
+        defaultEdge: {
+          // type: 'polyline',
+          // size: 10,
+          // color: '#e2e2e2',
+          // style: {
+          //   // endArrow: {
+          //   //   path: 'M 0,0 L 8,4 L 8,-4 Z',
+          //   //   fill: '#e2e2e2',
+          //   // },
+          //   radius: 20,
+          // },
+        },
+      })
+      graph.data(data)
+      graph.render()
+      // 获取图上的所有节点实例
+      const rNodes = graph.getNodes()
+      const rEdges = graph.getEdges()
+      // 遍历节点实例，将所有节点提前。
+      rNodes.forEach((node) => {
+        node.toBack()
+      })
+      rEdges.forEach((edge) => {
+        edge.toFront()
+      })
+      if (typeof window !== 'undefined')
+        window.onresize = () => {
+          if (!graph || graph.get('destroyed')) return
+          if (!container || !container.scrollWidth || !container.scrollHeight) return
+          graph.changeSize(container.scrollWidth, container.scrollHeight)
+        }
+    </script>
+  </body>
+</html>

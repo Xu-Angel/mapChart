@@ -1187,14 +1187,14 @@ function getEdgeType(source, target, isHideNode) {
     S: 'Line', // 南
     W: 'Line', // 西
     N: 'Line', // 北
-    ES: 'brokenLine', // 东南
-    EN: 'brokenLine', // 东北
-    WS: 'brokenLine', // 西南
-    WN: 'brokenLine', // 西北
-    // ES: 'polyline', // 东南
-    // EN: 'polyline', // 东北
-    // WS: 'polyline', // 西南
-    // WN: 'polyline', // 西北
+    // ES: 'brokenLine', // 东南
+    // EN: 'brokenLine', // 东北
+    // WS: 'brokenLine', // 西南
+    // WN: 'brokenLine', // 西北
+    ES: 'polyline', // 东南
+    EN: 'polyline', // 东北
+    WS: 'polyline', // 西南
+    WN: 'polyline', // 西北
   }
   const direction = calculateDirection(source, target)
   return directions[direction]
@@ -1268,6 +1268,7 @@ G6.registerEdge('brokenLine', {
       // 通过map获取
       path = parsePath(edgePoitsMap[source](cfg))
     }
+    console.log(path, 'pathpathpathpath')
     if (path.length !== 0) {
       // console.log(path, 'ppp')
     }
@@ -1444,7 +1445,7 @@ function generateBranchLines(mainLinesData) {
         radius: 10,
       },
       routeCfg: {
-        //maxAllowedDirectionChange: Math.PI /6
+        maxAllowedDirectionChange: Math.PI / 6,
       },
     })
 
