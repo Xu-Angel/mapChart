@@ -215,7 +215,7 @@ const paths = {
     {
       id: 17,
       prevId: 16,
-      nextId: null,
+      nextId: 18,
       x: 1481,
       y: 296,
       type: 'base',
@@ -223,6 +223,14 @@ const paths = {
         directive: 'V',
         directiveValue: '296',
       },
+    },
+    {
+      id: 18,
+      prevId: 17,
+      nextId: null,
+      x: 1481,
+      y: 296,
+      type: 'trueNode',
     },
   ],
   2: [
@@ -1588,95 +1596,275 @@ const paths = {
     },
   ],
 }
-function generateAdditionalPoints(commands, totalNumPoints) {
-  const updatedCommands = [...commands] // 复制原始指令数组
-  let currentId = commands.length // 新生成的点的起始ID
+/**
+ * 计算贝塞尔曲线的长度
+ * @param {*} P0  起始点
+ * @param {*} P1  控制点1
+ * @param {*} P2  控制点2
+ * @param {*} P3  结束点
+ * @param {*} steps  步长
+ * @returns
+ */
+function calculateBezierLength(P0, P1, P2, P3, steps = 1000) {
+  let length = 0
+  const dt = 1 / steps
 
-  // 提取所有直线段
-  const lineSegments = []
-  for (let i = 0; i < commands.length - 1; i++) {
-    const current = commands[i]
+  for (let i = 0; i < steps; i++) {
+    const t = i * dt
+    const tNext = (i + 1) * dt
 
-    const directive = current?.directiveObj?.directive
-    // 跳过非直线段
-    if (!directive || ['cDirective', 'trueNode'].includes(current.type)) {
-      continue
+    const x = (1 - t) ** 3 * P0.x + 3 * t * (1 - t) ** 2 * P1.x + 3 * t ** 2 * (1 - t) * P2.x + t ** 3 * P3.x
+    const y = (1 - t) ** 3 * P0.y + 3 * t * (1 - t) ** 2 * P1.y + 3 * t ** 2 * (1 - t) * P2.y + t ** 3 * P3.y
+
+    const xNext = (1 - tNext) ** 3 * P0.x + 3 * tNext * (1 - tNext) ** 2 * P1.x + 3 * tNext ** 2 * (1 - tNext) * P2.x + tNext ** 3 * P3.x
+    const yNext = (1 - tNext) ** 3 * P0.y + 3 * tNext * (1 - tNext) ** 2 * P1.y + 3 * tNext ** 2 * (1 - tNext) * P2.y + tNext ** 3 * P3.y
+
+    const dx = xNext - x
+    const dy = yNext - y
+    length += Math.sqrt(dx * dx + dy * dy)
+  }
+
+  return length
+}
+function generateAdditionalPoints(points = [], totalNumPoints) {
+  const npoints = [...points] // 复制原始指令数组
+  let currentId = npoints.length // 新生成的点的起始ID
+  //1.计算每个指令对象实际渲染的线段长度
+  npoints.forEach((item, index) => {
+    // 跳过trueNode
+    if (['trueNode'].includes(item.type)) {
+      return
     }
-    //todo:第一轮生成逻辑
-    // 如果（x1,y1）和（x2,y2）两点没有贝塞尔曲线指令，且非水平线垂直线链接的，则通过直线段生成新的点
-    // 所有的直线都用来生成一遍了，则将最新生成的数组来进行校验寻找到两个最长的直线段的坐标点生成一个新坐标点。然后递归
-
+    // 如果是最后一个点，直接返回
+    if (!item.nextId) return
+    //计算当前指令对象描绘的线的长度
     let length = 0
-    const prev = updatedCommands.find((item) => item.id === current.prevId)
-    if (directive === 'H') {
+    const prev = npoints.find((p) => p.id === item.prevId)
+    const next = npoints.find((p) => p.id === item.nextId)
+    const nextIdx = npoints.findIndex((p) => p.id === next.id)
+    const directive = item.directiveObj?.directive
+    if (directive === 'M') {
+      //起始点没有长度
+      length = 0
+    } else if (directive === 'H') {
       //上一个节点的X 和当前的X的绝对值就是长度
-      length = Math.abs(prev.x - current.x)
+      length = Math.abs(prev.x - item.x)
     } else if (directive === 'V') {
       //上一个节点的Y 和当前的Y的绝对值就是长度
-      length = Math.abs(prev.y - current.y)
+      length = Math.abs(prev.y - item.y)
+    } else if (directive === 'c') {
+      // 示例：计算一个三次贝塞尔曲线的长度
+      //   directiveObj: {
+      //   directive: 'c',
+      //   directiveValue: '6.626999999999981 0 12 -5.373000000000019 12 -12',
+      // },
+      const directiveValue = item.directiveObj?.directiveValue.split(' ')
+      const P0 = { x: prev.x, y: prev.y }
+      const P1 = { x: P0.x + +directiveValue[0], y: P0.y + +directiveValue[1] }
+      const P2 = { x: P1.x + +directiveValue[2] + +directiveValue[3], y: P1.y + +directiveValue[4] + +directiveValue[5] }
+      const P3 = { x: next.x, y: next.y }
+      length = calculateBezierLength(P0, P1, P2, P3)
+      // console.log(directiveValue, P0, P1, P2, P3, `贝塞尔曲线的长度为: ${length}`)
+      // c指令计算出来的长度归结到下一个指令对象的长度上
+      npoints[nextIdx].length = length
     }
-    lineSegments.push({ ...current, directive, prev, length })
-  }
-
-  // 如果没有直线段，直接返回原始数组
-  if (lineSegments.length === 0) {
-    return updatedCommands
-  }
-
-  // 按直线长度从长到短排序
-  lineSegments.sort((a, b) => b.length - a.length)
-
-  // 递归生成点
-  function generatePoints(segments, numPoints) {
-    if (numPoints <= 0) return
-
-    const segment = segments[0]
-    if (!segment) return
-
-    const { prev, length, directive } = segment
-    let current = updatedCommands.find((item) => item.id === segment.id)
-
-    let midPoint = {}
-    // 生成中间点
-    // 如果这是条水平线则是X边，Y不变
-    if (directive === 'H') {
-      midPoint = {
-        x: (current.x + prev.x) / 2,
-        y: current.y,
-      }
-    } else if (directive === 'V') {
-      midPoint = {
-        x: current.x,
-        y: (current.y + prev.y) / 2,
-      }
+    item.length = length
+  })
+  //2.每个指令对象相加，得出整个指令数组渲染的线的长度
+  const totalLength = npoints.filter((item) => item.length).reduce((acc, item) => acc + +item.length, 0)
+  console.log(`整个指令数组渲染的线的长度为: ${totalLength}`)
+  //2-1.计算出每个指令对象线的长度占整个指令数组渲染的线的长度的百分比
+  npoints.forEach((item) => {
+    item.percent = item.length / totalLength
+  })
+  //3.根据传入的totalNumPoints计算得出分别要落在哪个百分比上，就可以得出落在哪个指令对象的区间上
+  //3-1.计算出每个指令对象的百分比区间
+  npoints.forEach((item, index) => {
+    if (index === 0) {
+      item.startPercent = 0
+      item.percent = 0
+    } else {
+      item.startPercent = npoints[index - 1].endPercent
     }
-    // 如果这是条垂直线则是Y边，X不变
-    // 插入新生成的点
-    const index = updatedCommands.findIndex((item) => item.id === prev.id)
-    const id = currentId++
-    updatedCommands[index].nextId = id
-    updatedCommands.splice(index + 1, 0, {
-      id,
-      prevId: prev.id,
-      nextId: id,
-      x: midPoint.x,
-      y: midPoint.y,
-      type: 'trueNode',
-    })
-    updatedCommands.forEach((item) => {
-      if (item.id === current.id) {
-        item.prevId = id
+    item.endPercent = item.startPercent + item.percent
+  })
+  //3-2.计算出新增点落在哪个指令对象的区间上,使用百分比来平均分配新增点
+
+  for (let i = 0; i < totalNumPoints; i++) {
+    // const percent = (i + 1) / (totalNumPoints + 1)
+    const percent = (i + 1) / totalNumPoints
+    let target = npoints.filter((item) => item.length).find((item) => item.startPercent <= percent && item.endPercent >= percent) // 实际的逻辑目标点，用于连接关系
+    // type: "cDirective"
+    let lenTarget = target //用来计算长度的目标点
+    // if (target.type === 'cDirective') {
+    //   const lenNpoints = npoints.filter((item) => item.length)
+    //   lenTarget = lenNpoints[lenNpoints.findIndex((item) => item.id === target.id) + 1]
+    // }
+    console.log(target, percent, '---')
+    let x, y
+    //3-3.根据新增点落在的百分比位置，计算出新增点的坐标
+    // 如果百分比为1，则新增点的坐标就是目标点的坐标
+    if (percent === 1) {
+      x = target.x
+      y = target.y
+      // 插入新生成的点
+      const id = 't' + currentId++
+      npoints.push({
+        id, // 新生成的点的ID
+        prevId: target.id, // 新生成的点的上一个点是当前的前一个点
+        nextId: null, // 新生成的点的下一个点是当前的目标点
+        x, // 新生成的点的X坐标
+        y, // 新生成的点的Y坐标
+        type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
+      })
+      //当前的目标点的nextId更新为新生成的点的ID
+      npoints[npoints.length - 2].nextId = id
+    } else {
+      // 如果百分比不为1，则新增点的坐标需要根据目标点的类型来计算
+      // 寻找逻辑关系的前一个点
+      const prev = npoints.find((item) => item.id === lenTarget.prevId)
+      // 寻找逻辑关系的后一个点
+      const next = npoints.find((item) => item.id === lenTarget.nextId)
+      // 新生成的点的坐标
+      // 确定lenTarget对象是水平线，找到它的前一个指令对象，如果前一个指令对象的Y坐标和当前指令对象的Y坐标相等，则说明是水平线
+      const isH = lenTarget.Y === prev.Y
+      if (isH) {
+        //如果得到的lenTarget对象是一个水平线，则新生成的点的Y坐标是prev的Y坐标，X坐标是prev的X坐标加上target的X坐标的差值乘以百分比
+        x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
+        y = lenTarget.y
       }
-    })
-    // 更新后续点的 prevId 和 nextId
-    // 递归生成剩余的点
-    generatePoints(segments.slice(1), numPoints - 1)
+
+      // 确定lenTarget对象是垂直线，找到它的前一个指令对象，如果前一个指令对象的X坐标和当前指令对象的X坐标相等，则说明是垂直线
+      const isV = lenTarget.X === prev.X
+      if (isV) {
+        //如果得到的lenTarget对象是一个垂直线，则新生成的点的X坐标是prev的X坐标，Y坐标是prev的Y坐标加上lenTarget的Y坐标的差值乘以百分比
+        x = lenTarget.x
+        y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
+      }
+      // 确定lenTarget对象是一条斜线，找到它的前一个指令对象，如果前一个指令对象的X坐标和Y坐标和当前指令对象的X坐标和Y坐标不相等，则说明是斜线
+      const isS = lenTarget.X !== prev.X && lenTarget.Y !== prev.Y
+      if (isS) {
+        //如果得到的lenTarget对象是一条斜线，则新生成的点的X坐标是prev的X坐标加上((next的X坐标减去prev的X坐标)乘以(百分比减去lenTarget的startPercent)除以lenTarget的percent)
+        x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
+        y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
+      }
+      // 插入新生成的点
+      const index = npoints.findIndex((item) => item.id === prev.id)
+      const id = 't' + currentId++
+      // npoints[index].nextId = id
+      npoints.splice(index + 1, 0, {
+        id, // 新生成的点的ID
+        prevId: prev.id, // 新生成的点的上一个点是当前的前一个点
+        nextId: target.id, // 新生成的点的下一个点是当前的目标点
+        x, // 新生成的点的X坐标
+        y, // 新生成的点的Y坐标
+        type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
+      })
+
+      npoints.forEach((item) => {
+        //当前的目标点的prevId更新为新生成的点的ID
+        if (item.id === target.id) {
+          item.prevId = id
+        }
+        //当前的前一个点的nextId更新为新生成的点的ID
+        if (item.id === prev.id) {
+          item.nextId = id
+        }
+      })
+    }
   }
 
-  // 生成指定数量的点
-  generatePoints(lineSegments, totalNumPoints)
+  // 返回新生成的指令数组
+  return npoints
+  //3-1,例如一个点时，点落在的百分比位置则为 100%/1=100% 也就是新增点在100%的位置上
+  //3-2,例如两个点时，点落在的百分比位置则为 100%/2=50% 也就是新增点分别在50%，100%的位置上
+  //3-2. 根据新加点所在的百分比位置，计算出新加点的坐标
 
-  return updatedCommands
+  // // 提取所有直线段
+  // const lineSegments = []
+  // for (let i = 0; i < commands.length - 1; i++) {
+  //   const current = commands[i]
+
+  //   const directive = current?.directiveObj?.directive
+  //   // 跳过非直线段
+  //   if (!directive || ['cDirective', 'trueNode'].includes(current.type)) {
+  //     continue
+  //   }
+  //   //todo:第一轮生成逻辑
+  //   // 如果（x1,y1）和（x2,y2）两点没有贝塞尔曲线指令，且非水平线垂直线链接的，则通过直线段生成新的点
+  //   // 所有的直线都用来生成一遍了，则将最新生成的数组来进行校验寻找到两个最长的直线段的坐标点生成一个新坐标点。然后递归
+
+  //   let length = 0
+  //   const prev = updatedCommands.find((item) => item.id === current.prevId)
+  //   if (directive === 'H') {
+  //     //上一个节点的X 和当前的X的绝对值就是长度
+  //     length = Math.abs(prev.x - current.x)
+  //   } else if (directive === 'V') {
+  //     //上一个节点的Y 和当前的Y的绝对值就是长度
+  //     length = Math.abs(prev.y - current.y)
+  //   }
+  //   lineSegments.push({ ...current, directive, prev, length })
+  // }
+
+  // // 如果没有直线段，直接返回原始数组
+  // if (lineSegments.length === 0) {
+  //   return updatedCommands
+  // }
+
+  // // 按直线长度从长到短排序
+  // lineSegments.sort((a, b) => b.length - a.length)
+
+  // // 递归生成点
+  // function generatePoints(segments, numPoints) {
+  //   if (numPoints <= 0) return
+
+  //   const segment = segments[0]
+  //   if (!segment) return
+
+  //   const { prev, length, directive } = segment
+  //   let current = updatedCommands.find((item) => item.id === segment.id)
+
+  //   let midPoint = {}
+  //   // 生成中间点
+  //   // 如果这是条水平线则是X边，Y不变
+  //   if (directive === 'H') {
+  //     midPoint = {
+  //       x: (current.x + prev.x) / 2,
+  //       y: current.y,
+  //     }
+  //   } else if (directive === 'V') {
+  //     midPoint = {
+  //       x: current.x,
+  //       y: (current.y + prev.y) / 2,
+  //     }
+  //   }
+  //   // 如果这是条垂直线则是Y边，X不变
+  //   // 插入新生成的点
+  //   const index = updatedCommands.findIndex((item) => item.id === prev.id)
+  //   const id = currentId++
+  //   updatedCommands[index].nextId = id
+  //   updatedCommands.splice(index + 1, 0, {
+  //     id,
+  //     prevId: prev.id,
+  //     nextId: id,
+  //     x: midPoint.x,
+  //     y: midPoint.y,
+  //     type: 'trueNode',
+  //   })
+  //   updatedCommands.forEach((item) => {
+  //     if (item.id === current.id) {
+  //       item.prevId = id
+  //     }
+  //   })
+  //   // 更新后续点的 prevId 和 nextId
+  //   // 递归生成剩余的点
+  //   generatePoints(segments.slice(1), numPoints - 1)
+  // }
+
+  // // 生成指定数量的点
+  // generatePoints(lineSegments, totalNumPoints)
+
+  // return updatedCommands
 }
 
 // 折线
@@ -1697,7 +1885,7 @@ G6.registerEdge('customEdge', {
       // path = [directive, `${cs[0] + ofx} ${cs[1] + ofy}`, `${cs[2] + ofx} ${cs[3] + ofy}`, `${cs[4] + ofx} ${cs[5] + ofy}`]
       path = [directive, `${cs[0]} ${cs[1]}`, `${cs[2]} ${cs[3]}`, `${cs[4]} ${cs[5]}`]
     }
-    console.log(path, cfg, group, 'pathpathpathpath')
+    // console.log(path, cfg, group, 'pathpathpathpath')
     const shape = group.addShape('path', {
       attrs: {
         stroke: cfg.color,
@@ -1851,14 +2039,15 @@ function generateDataForLines() {
     }
     const vpoints = paths[line]
     // 根据基础数据坐标点数据来拓展展示节点
-    const points = generateAdditionalPoints(vpoints, 4)
+    const points = generateAdditionalPoints(vpoints, 8)
     const idx = line - 1
     points.forEach((point, index) => {
       const nodeId = `line-${line}-node-${index}`
       // 加上偏移对齐大画布
       point.x = point.x + offsets[idx].x
       point.y = point.y + offsets[idx].y
-      point.offset = offsets[idx]
+      // point.offset = offsets[idx] 先注释掉，后续会用到
+      point.offset = { x: 0, y: 0 }
       const nodeObj = {
         id: nodeId,
         label: index === 0 ? line : ``,
