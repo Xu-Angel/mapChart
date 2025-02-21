@@ -10,12 +10,12 @@
     </style>
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1176" height="227" viewBox="0 0 1176 227" fill="none">
+    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1176" height="227" viewBox="0 0 1176 227" fill="none">
       <path
         d="M2 3L172.04 122.728c2.022 1.424 4.435 2.188 6.908 2.188H791.275c2.473 0 4.886 0.765 6.908 2.189L846.214 160.924c2.022 1.424 4.435 2.188 6.909 2.188H956.015c2.473 0 4.886 0.765 6.909 2.188L1043.18 221.812c2.02 1.424 4.44 2.188 6.91 2.188H1176"
         stroke="#00C29F"
         stroke-width="5" />
-    </svg>
+    </svg> -->
     <div id="container"></div>
     <script src="../g6.min.js"></script>
     <script src="./data.js"></script>
@@ -28,16 +28,17 @@
       // {"x":3502,"y":1999}
       const graph = new G6.Graph({
         container: 'container',
-        width: 1800,
-        height: 1800,
-        fitView: true,
+        // width: 1800,
+        // height: 1800,
+        // width: '100%',
+        // height: '100%',
+        width: 1929,
+        height: 1156,
+        // fitView: true,
         renderer: 'svg',
         modes: {
-          default: ['drag-canvas', 'drag-node'],
-        },
-        modes: {
           //
-          default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+          default: ['drag-canvas', 'zoom-canvas'],
         },
         animate: true,
         defaultNode: {

@@ -2,86 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const svgs = require('./svg.js')
 
-// 解析SVG路径的d属性
-// function parsePathCommands(d) {
-//   const commands = []
-//   const regex = /([MmLlHhVvCcSsQqTtAa])([^MmLlHhVvCcSsQqTtAa]*)/g
-//   let match
-//   let currentX = 0
-//   let currentY = 0
-//   let commandId = 0
-
-//   while ((match = regex.exec(d))) {
-//     const [_, commandType, values] = match
-//     const valuesArray = values
-//       .trim()
-//       .split(/[\s,]+/)
-//       .map(Number)
-
-//     switch (commandType.toUpperCase()) {
-//       case 'M':
-//       case 'L':
-//         const targetX = valuesArray[0]
-//         const targetY = valuesArray[1]
-//         currentX = targetX
-//         currentY = targetY
-//         commands.push({
-//           id: commandId++,
-//           x: targetX,
-//           y: targetY,
-//           type: 'node',
-//         })
-//         break
-//       case 'H':
-//         const hX = valuesArray[0]
-//         commands.push({
-//           id: commandId++,
-//           x: hX,
-//           y: currentY,
-//           type: 'node',
-//         })
-//         currentX = hX
-//         break
-//       case 'V':
-//         const vY = valuesArray[0]
-//         commands.push({
-//           id: commandId++,
-//           x: currentX,
-//           y: vY,
-//           type: 'node',
-//         })
-//         currentY = vY
-//         break
-//       case 'C':
-//         const [x1, y1, x2, y2, x, y] = valuesArray
-//         const dx1 = x1 - currentX
-//         const dy1 = y1 - currentY
-//         const dx2 = x2 - currentX
-//         const dy2 = y2 - currentY
-//         const dx = x - currentX
-//         const dy = y - currentY
-
-//         currentX = x
-//         currentY = y
-
-//         commands.push({
-//           id: commandId++,
-//           x,
-//           y,
-//           type: 'cDirective',
-//           directive: 'c',
-//           directiveValue: `${dx1} ${dy1} ${dx2} ${dy2} ${dx} ${dy}`,
-//         })
-//         break
-//       default:
-//         console.warn(`Unsupported command type: ${commandType}`)
-//     }
-//   }
-
-//   return commands
-// }
-// 解析SVG路径的d属性
-function parsePathCommands(d) {
+function parsePathCommands(d, convertToRelative = true) {
   const commands = []
   const regex = /([MmLlHhVvCcSsQqTtAa])([^MmLlHhVvCcSsQqTtAa]*)/g
   let match
@@ -111,7 +32,7 @@ function parsePathCommands(d) {
           x: targetX,
           y: targetY,
           type: 'base',
-          nextPoint: { directive: commandType, directiveValue: `${targetX} ${targetY}` },
+          directiveObj: { directive: commandType, directiveValue: `${targetX} ${targetY}` },
         }
         break
       case 'H':
@@ -123,7 +44,7 @@ function parsePathCommands(d) {
           x: hX,
           y: currentY,
           type: 'base',
-          nextPoint: { directive: commandType, directiveValue: `${hX}` },
+          directiveObj: { directive: commandType, directiveValue: `${hX}` },
         }
         currentX = hX
         break
@@ -136,34 +57,48 @@ function parsePathCommands(d) {
           x: currentX,
           y: vY,
           type: 'base',
-          nextPoint: { directive: commandType, directiveValue: `${vY}` },
+          directiveObj: { directive: commandType, directiveValue: `${vY}` },
         }
         currentY = vY
         break
       case 'C': {
         const [x1, y1, x2, y2, x, y] = valuesArray
-        const dx1 = x1 - currentX
-        const dy1 = y1 - currentY
-        const dx2 = x2 - currentX
-        const dy2 = y2 - currentY
-        const dx = x - currentX
-        const dy = y - currentY
+        if (convertToRelative) {
+          const dx1 = x1 - currentX
+          const dy1 = y1 - currentY
+          const dx2 = x2 - currentX
+          const dy2 = y2 - currentY
+          const dx = x - currentX
+          const dy = y - currentY
 
+          command = {
+            id: commandId++,
+            prevId: commands.length ? commands[commands.length - 1].id : null,
+            nextId: null,
+            x,
+            y,
+            type: 'cDirective',
+            directiveObj: {
+              directive: 'c',
+              directiveValue: `${dx1} ${dy1} ${dx2} ${dy2} ${dx} ${dy}`,
+            },
+          }
+        } else {
+          command = {
+            id: commandId++,
+            prevId: commands.length ? commands[commands.length - 1].id : null,
+            nextId: null,
+            x,
+            y,
+            type: 'cDirective',
+            directiveObj: {
+              directive: 'C',
+              directiveValue: `${x1} ${y1} ${x2} ${y2} ${x} ${y}`,
+            },
+          }
+        }
         currentX = x
         currentY = y
-
-        command = {
-          id: commandId++,
-          prevId: commands.length ? commands[commands.length - 1].id : null,
-          nextId: null,
-          x,
-          y,
-          type: 'cDirective',
-          nextDirective: {
-            directive: 'c',
-            directiveValue: `${dx1} ${dy1} ${dx2} ${dy2} ${dx} ${dy}`,
-          },
-        }
         break
       }
       default:
@@ -200,7 +135,7 @@ async function generatePathsFile() {
     for (const key in svgs) {
       const svgData = svgs[key]
       const pathsData = extractPathsData(svgData)
-      paths[key] = pathsData
+      paths[key] = pathsData.flat()
     }
 
     const pathsFilePath = path.join(__dirname, 'paths.js')
