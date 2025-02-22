@@ -38,7 +38,7 @@ const paths = {
       nextId: 3,
       x: 208.656,
       y: 183.757,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '6.626999999999981 0 12 -5.373000000000019 12 -12',
@@ -62,7 +62,7 @@ const paths = {
       nextId: 5,
       x: 213.759,
       y: 81.9478,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.909499999999994 1.9039999999999964 -7.573799999999991 5.10299999999998 -9.820499999999996',
@@ -86,7 +86,7 @@ const paths = {
       nextId: 7,
       x: 273.312,
       y: 42.7915,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.019999999999982 -1.4183999999999983 4.427999999999997 -2.1794999999999973 6.896000000000015 -2.1794999999999973',
@@ -110,7 +110,7 @@ const paths = {
       nextId: 9,
       x: 379.338,
       y: 40.1093,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.7539999999999623 0 5.423000000000002 -0.9470000000000027 7.562000000000012 -2.6822000000000017',
@@ -134,7 +134,7 @@ const paths = {
       nextId: 11,
       x: 429.322,
       y: 3,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.1380000000000337 -1.73517 4.807999999999993 -2.6822 7.562000000000012 -2.6822',
@@ -158,7 +158,7 @@ const paths = {
       nextId: 13,
       x: 1034.3,
       y: 5.29757,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.5399999999999636 0 5.009999999999991 0.8043800000000001 7.059999999999945 2.2975700000000003',
@@ -182,7 +182,7 @@ const paths = {
       nextId: 15,
       x: 1244.65,
       y: 155.547,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.050000000000182 1.492999999999995 4.519999999999982 2.296999999999997 7.060000000000173 2.296999999999997',
@@ -206,7 +206,7 @@ const paths = {
       nextId: 17,
       x: 1481,
       y: 167.547,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '6.630000000000109 0 12 5.3729999999999905 12 12',
@@ -272,7 +272,7 @@ const paths = {
       nextId: 3,
       x: 178.948,
       y: 124.916,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.02200000000002 1.4240000000000066 4.435000000000002 2.1880000000000024 6.9080000000000155 2.1880000000000024',
@@ -296,7 +296,7 @@ const paths = {
       nextId: 5,
       x: 798.183,
       y: 127.105,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.47300000000007 0 4.885999999999967 0.7650000000000006 6.9080000000000155 2.189000000000007',
@@ -320,7 +320,7 @@ const paths = {
       nextId: 7,
       x: 853.123,
       y: 163.112,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.0219999999999345 1.4240000000000066 4.434999999999945 2.187999999999988 6.908999999999992 2.187999999999988',
@@ -344,7 +344,7 @@ const paths = {
       nextId: 9,
       x: 962.924,
       y: 165.3,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.47300000000007 0 4.885999999999967 0.7650000000000148 6.908999999999992 2.1880000000000166',
@@ -368,7 +368,7 @@ const paths = {
       nextId: 11,
       x: 1050.09,
       y: 224,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.019999999999982 1.4239999999999782 4.439999999999827 2.187999999999988 6.9099999999998545 2.187999999999988',
@@ -426,7 +426,7 @@ const paths = {
       nextId: 3,
       x: 6.50838,
       y: 225.18,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 3.179000000000002 1.2618200000000002 6.229000000000013 3.50838 8.479000000000013',
@@ -450,7 +450,7 @@ const paths = {
       nextId: 5,
       x: 80.7719,
       y: 304.52,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.246600000000001 2.25 3.508400000000009 5.298999999999978 3.508400000000009 8.478999999999985',
@@ -474,7 +474,7 @@ const paths = {
       nextId: 7,
       x: 84.2803,
       y: 885.183,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 3.1789999999999736 1.2617999999999938 6.228999999999928 3.5083999999999946 8.477999999999952',
@@ -532,7 +532,7 @@ const paths = {
       nextId: 3,
       x: 6.50838,
       y: 225.18,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 3.179000000000002 1.2618200000000002 6.229000000000013 3.50838 8.479000000000013',
@@ -556,7 +556,7 @@ const paths = {
       nextId: 5,
       x: 80.7719,
       y: 304.52,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.246600000000001 2.25 3.508400000000009 5.298999999999978 3.508400000000009 8.478999999999985',
@@ -580,7 +580,7 @@ const paths = {
       nextId: 7,
       x: 84.2803,
       y: 885.183,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 3.1789999999999736 1.2617999999999938 6.228999999999928 3.5083999999999946 8.477999999999952',
@@ -638,7 +638,7 @@ const paths = {
       nextId: 3,
       x: 84.7498,
       y: 359.481,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '3.190799999999996 -2.2479999999999905 5.089099999999988 -5.906999999999982 5.089099999999988 -9.810000000000002',
@@ -662,7 +662,7 @@ const paths = {
       nextId: 5,
       x: 89.8389,
       y: 289.183,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.90300000000002 1.898300000000006 -7.562000000000012 5.089100000000002 -9.810000000000002',
@@ -686,7 +686,7 @@ const paths = {
       nextId: 7,
       x: 230.866,
       y: 192.514,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.022999999999996 -1.4240000000000066 4.436999999999983 -2.188999999999993 6.911000000000001 -2.188999999999993',
@@ -710,7 +710,7 @@ const paths = {
       nextId: 9,
       x: 431.438,
       y: 190.727,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.2250000000000227 0 4.406000000000006 -0.6189999999999998 6.300000000000011 -1.7870000000000061',
@@ -734,7 +734,7 @@ const paths = {
       nextId: 11,
       x: 481.42,
       y: 162,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '1.893000000000029 -1.1680000000000064 4.074000000000012 -1.7860000000000014 6.299000000000035 -1.7860000000000014',
@@ -758,7 +758,7 @@ const paths = {
       nextId: 13,
       x: 856.624,
       y: 159.4,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.70799999999997 0 5.336999999999989 -0.9159999999999968 7.45799999999997 -2.5999999999999943',
@@ -782,7 +782,7 @@ const paths = {
       nextId: 15,
       x: 936.182,
       y: 99.5933,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.120999999999981 -1.6829999999999927 4.75 -2.5996999999999986 7.45799999999997 -2.5996999999999986',
@@ -806,7 +806,7 @@ const paths = {
       nextId: 17,
       x: 1107.45,
       y: 97.4035,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.480000000000018 0 4.8900000000001 -0.7647999999999939 6.920000000000073 -2.1898000000000053',
@@ -830,7 +830,7 @@ const paths = {
       nextId: 19,
       x: 1245.26,
       y: 3,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.019999999999982 -1.42497 4.430000000000064 -2.18982 6.910000000000082 -2.18982',
@@ -888,7 +888,7 @@ const paths = {
       nextId: 3,
       x: 8.10391,
       y: 566.587,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.908999999999992 1.9044499999999998 -7.574000000000069 5.103910000000001 -9.82000000000005',
@@ -912,7 +912,7 @@ const paths = {
       nextId: 5,
       x: 71.831,
       y: 524.5,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.019900000000007 -1.4180000000000064 4.427999999999997 -2.1789999999999736 6.896100000000004 -2.1789999999999736',
@@ -936,7 +936,7 @@ const paths = {
       nextId: 7,
       x: 105.661,
       y: 512.5,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '6.627099999999999 0 12.000100000000003 -5.373000000000047 12.000100000000003 -12',
@@ -960,7 +960,7 @@ const paths = {
       nextId: 9,
       x: 100.557,
       y: 264.819,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.908999999999992 -1.9050000000000011 -7.574000000000012 -5.103999999999999 -9.819999999999993',
@@ -984,7 +984,7 @@ const paths = {
       nextId: 11,
       x: 79.8456,
       y: 244.038,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '-3.1995000000000005 -2.247000000000014 -5.103899999999996 -5.911000000000001 -5.103899999999996 -9.820999999999998',
@@ -1008,7 +1008,7 @@ const paths = {
       nextId: 13,
       x: 84.9495,
       y: 138.206,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.9090000000000202 1.9044999999999987 -7.574000000000012 5.103899999999996 -9.820000000000022',
@@ -1032,7 +1032,7 @@ const paths = {
       nextId: 15,
       x: 124.662,
       y: 112.982,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.019999999999996 -1.4180000000000064 4.427999999999997 -2.179000000000002 6.896000000000001 -2.179000000000002',
@@ -1056,7 +1056,7 @@ const paths = {
       nextId: 17,
       x: 274.663,
       y: 110.803,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.4680000000000177 0 4.875999999999976 -0.7609999999999957 6.896000000000015 -2.179000000000002',
@@ -1080,7 +1080,7 @@ const paths = {
       nextId: 19,
       x: 340,
       y: 58.6859,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '3.1999999999999886 -2.246700000000004 5.103999999999985 -5.911100000000005 5.103999999999985 -9.820600000000006',
@@ -1138,7 +1138,7 @@ const paths = {
       nextId: 3,
       x: 382.65,
       y: 6.50173,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '3.176999999999964 0 6.222999999999956 1.2592400000000001 8.472999999999956 3.5017300000000002',
@@ -1162,7 +1162,7 @@ const paths = {
       nextId: 5,
       x: 431.082,
       y: 49.8417,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.248999999999967 2.2424999999999997 5.295999999999992 3.501800000000003 8.47199999999998 3.501800000000003',
@@ -1186,7 +1186,7 @@ const paths = {
       nextId: 7,
       x: 589,
       y: 61.8417,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '6.626999999999953 0 12 5.3725999999999985 12 12',
@@ -1210,7 +1210,7 @@ const paths = {
       nextId: 9,
       x: 601,
       y: 76,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 6.627399999999994 5.373000000000047 12 12 12',
@@ -1268,7 +1268,7 @@ const paths = {
       nextId: 3,
       x: 125.627,
       y: 15,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '6.6270000000000095 0 12 5.372590000000001 12 12',
@@ -1292,7 +1292,7 @@ const paths = {
       nextId: 5,
       x: 137.627,
       y: 31.383,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 6.6274000000000015 5.373000000000005 12 12.000000000000014 12',
@@ -1316,7 +1316,7 @@ const paths = {
       nextId: 7,
       x: 305.162,
       y: 33.5473,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.459000000000003 0 4.859000000000037 0.7555000000000014 6.875 2.164300000000001',
@@ -1340,7 +1340,7 @@ const paths = {
       nextId: 9,
       x: 346.452,
       y: 59.766,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.0160000000000196 1.4087999999999994 4.415999999999997 2.1644000000000005 6.875 2.1644000000000005',
@@ -1364,7 +1364,7 @@ const paths = {
       nextId: 11,
       x: 711.686,
       y: 61.9303,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.4589999999999463 0 4.858999999999924 0.755500000000005 6.875 2.1643000000000043',
@@ -1422,7 +1422,7 @@ const paths = {
       nextId: 3,
       x: 15,
       y: 106.429,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 6.627700000000004 5.372579999999999 11.999700000000004 12 11.999700000000004',
@@ -1446,7 +1446,7 @@ const paths = {
       nextId: 5,
       x: 69.3184,
       y: 108.641,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.4868999999999915 0 4.912499999999994 0.7729999999999961 6.941199999999995 2.2120000000000033',
@@ -1470,7 +1470,7 @@ const paths = {
       nextId: 7,
       x: 318.323,
       y: 282.5,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '2.02800000000002 1.4379999999999882 4.454000000000008 2.2110000000000127 6.940999999999974 2.2110000000000127',
@@ -1528,7 +1528,7 @@ const paths = {
       nextId: 3,
       x: 172.579,
       y: 304.249,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '-2.025999999999982 -1.434000000000026 -4.446999999999974 -2.2029999999999745 -6.929999999999978 -2.2029999999999745',
@@ -1552,7 +1552,7 @@ const paths = {
       nextId: 5,
       x: 42.6722,
       y: 292.249,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '-6.627399999999994 0 -12 -5.373000000000047 -12 -12',
@@ -1576,7 +1576,7 @@ const paths = {
       nextId: 7,
       x: 37.6022,
       y: 27.4138,
-      type: 'cDirective',
+      type: 'base',
       directiveObj: {
         directive: 'c',
         directiveValue: '0 -3.8948000000000036 -1.8902 -7.547400000000003 -5.069999999999993 -9.796700000000005',
@@ -1631,240 +1631,170 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
   let currentId = npoints.length // 新生成的点的起始ID
   //1.计算每个指令对象实际渲染的线段长度
   npoints.forEach((item, index) => {
-    // 跳过trueNode
-    if (['trueNode'].includes(item.type)) {
+    // 跳过trueNode 或者有length的点（由c指令提前算给了下个点的）
+    if (['trueNode'].includes(item.type) || item.length) {
       return
     }
     // 如果是最后一个点，直接返回
     if (!item.nextId) return
     //计算当前指令对象描绘的线的长度
     let length = 0
-    const prev = npoints.find((p) => p.id === item.prevId)
-    const next = npoints.find((p) => p.id === item.nextId)
-    const nextIdx = npoints.findIndex((p) => p.id === next.id)
+    const prev = npoints[index - 1]
+    const next = npoints[index + 1]
     const directive = item.directiveObj?.directive
-    if (directive === 'M') {
-      //起始点没有长度
-      length = 0
-    } else if (directive === 'H') {
-      //上一个节点的X 和当前的X的绝对值就是长度
-      length = Math.abs(prev.x - item.x)
-    } else if (directive === 'V') {
-      //上一个节点的Y 和当前的Y的绝对值就是长度
-      length = Math.abs(prev.y - item.y)
-    } else if (directive === 'c') {
-      // 示例：计算一个三次贝塞尔曲线的长度
-      //   directiveObj: {
-      //   directive: 'c',
-      //   directiveValue: '6.626999999999981 0 12 -5.373000000000019 12 -12',
-      // },
-      const directiveValue = item.directiveObj?.directiveValue.split(' ')
-      const P0 = { x: prev.x, y: prev.y }
-      const P1 = { x: P0.x + +directiveValue[0], y: P0.y + +directiveValue[1] }
-      const P2 = { x: P1.x + +directiveValue[2] + +directiveValue[3], y: P1.y + +directiveValue[4] + +directiveValue[5] }
-      const P3 = { x: next.x, y: next.y }
-      length = calculateBezierLength(P0, P1, P2, P3)
-      // console.log(directiveValue, P0, P1, P2, P3, `贝塞尔曲线的长度为: ${length}`)
+    if (directive === 'c') {
       // c指令计算出来的长度归结到下一个指令对象的长度上
-      npoints[nextIdx].length = length
+      // 直接忽略曲线部分，按照C坐标x,y和下一个坐标点的x,y计算长度。
+      // 判断是否为水平线
+      const isH = item.y === prev.y
+      if (isH) {
+        length = Math.abs(next.x - item.x)
+      }
+      //判断是否为垂直线
+      const isV = item.x === prev.x
+      if (isV) {
+        length = Math.abs(next.y - item.y)
+      }
+      //则是斜线
+      if (!isH && !isV) {
+        // 斜线的长度计算
+        length = Math.sqrt((next.x - item.x) ** 2 + (next.y - item.y) ** 2)
+      }
+      item.length = 0
+      npoints[index + 1].length = length
+    } else {
+      if (directive === 'M') {
+        //起始点没有长度
+        length = 0
+      } else if (directive === 'H') {
+        //上一个节点的X 和当前的X的绝对值就是长度
+        length = Math.abs(prev.x - item.x)
+      } else if (directive === 'V') {
+        //上一个节点的Y 和当前的Y的绝对值就是长度
+        length = Math.abs(prev.y - item.y)
+      }
+      item.length = length
     }
-    item.length = length
   })
   //2.每个指令对象相加，得出整个指令数组渲染的线的长度
-  const totalLength = npoints.filter((item) => item.length).reduce((acc, item) => acc + +item.length, 0)
+  const totalLength = npoints.filter((item) => +item.length > 0).reduce((acc, item) => acc + +item.length, 0)
   console.log(`整个指令数组渲染的线的长度为: ${totalLength}`)
   //2-1.计算出每个指令对象线的长度占整个指令数组渲染的线的长度的百分比
   npoints.forEach((item) => {
-    item.percent = item.length / totalLength
+    item.startPercent = 0
+    item.endPercent = 0
+    if (item.length) {
+      item.percent = item.length / totalLength
+    }
   })
   //3.根据传入的totalNumPoints计算得出分别要落在哪个百分比上，就可以得出落在哪个指令对象的区间上
   //3-1.计算出每个指令对象的百分比区间
-  npoints.forEach((item, index) => {
-    if (index === 0) {
-      item.startPercent = 0
-      item.percent = 0
-    } else {
-      item.startPercent = npoints[index - 1].endPercent
-    }
-    item.endPercent = item.startPercent + item.percent
+  const lennpoints = npoints.filter((item) => item.length)
+  lennpoints.forEach((item, index) => {
+    const idx = npoints.findIndex((n) => n.id === item.id)
+    npoints[idx].startPercent = lennpoints[index - 1]?.endPercent ?? 0
+    npoints[idx].endPercent = npoints[idx].startPercent + npoints[idx].percent
   })
   //3-2.计算出新增点落在哪个指令对象的区间上,使用百分比来平均分配新增点
-
+  console.log(JSON.parse(JSON.stringify(npoints)), 'npoints')
   for (let i = 0; i < totalNumPoints; i++) {
-    // const percent = (i + 1) / (totalNumPoints + 1)
     const percent = (i + 1) / totalNumPoints
-    let target = npoints.filter((item) => item.length).find((item) => item.startPercent <= percent && item.endPercent >= percent) // 实际的逻辑目标点，用于连接关系
-    // type: "cDirective"
+    let target = npoints.find((item) => item.startPercent <= percent && item.endPercent >= percent) // 实际的逻辑目标点，用于连接关系
     let lenTarget = target //用来计算长度的目标点
-    // if (target.type === 'cDirective') {
-    //   const lenNpoints = npoints.filter((item) => item.length)
-    //   lenTarget = lenNpoints[lenNpoints.findIndex((item) => item.id === target.id) + 1]
-    // }
-    console.log(target, percent, '---')
     let x, y
     //3-3.根据新增点落在的百分比位置，计算出新增点的坐标
     // 如果百分比为1，则新增点的坐标就是目标点的坐标
     if (percent === 1) {
+      target = npoints[npoints.length - 1]
       x = target.x
       y = target.y
       // 插入新生成的点
       const id = 't' + currentId++
       npoints.push({
         id, // 新生成的点的ID
-        prevId: target.id, // 新生成的点的上一个点是当前的前一个点
-        nextId: null, // 新生成的点的下一个点是当前的目标点
+        prevId: null, // 先不设置
+        nextId: null, //  先不设置
         x, // 新生成的点的X坐标
         y, // 新生成的点的Y坐标
+        color: 'yellow',
         type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
       })
-      //当前的目标点的nextId更新为新生成的点的ID
-      npoints[npoints.length - 2].nextId = id
     } else {
+      const targetIndex = npoints.findIndex((item) => item.id === target.id)
       // 如果百分比不为1，则新增点的坐标需要根据目标点的类型来计算
       // 寻找逻辑关系的前一个点
+      //FIXME: 这里有问题，如果目标点是base，那么前一个点就不是真正的前一个点，而是当前点 这里需要优化
+      // lennpoints
+      // const prev = npoints[targetIndex - 1]
       const prev = npoints.find((item) => item.id === lenTarget.prevId)
+      // const lentargetIndex = lennpoints.findIndex((item) => item.id === target.id)
+      // const prev = lennpoints[lentargetIndex - 1] ?? npoints[targetIndex - 1]
       // 寻找逻辑关系的后一个点
       const next = npoints.find((item) => item.id === lenTarget.nextId)
+      // const next = lennpoints[lentargetIndex + 1]
+      // const next = npoints[lentargetIndex + 1]
+      console.log({ target, prev, next, percent }, '-prev-next-percent-')
       // 新生成的点的坐标
       // 确定lenTarget对象是水平线，找到它的前一个指令对象，如果前一个指令对象的Y坐标和当前指令对象的Y坐标相等，则说明是水平线
-      const isH = lenTarget.Y === prev.Y
+      const isH = lenTarget.y === prev.y
       if (isH) {
         //如果得到的lenTarget对象是一个水平线，则新生成的点的Y坐标是prev的Y坐标，X坐标是prev的X坐标加上target的X坐标的差值乘以百分比
+        // 这里x不能超出当前目标区间的范围 20当是离开贝塞尔曲线了
         x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
         y = lenTarget.y
       }
 
       // 确定lenTarget对象是垂直线，找到它的前一个指令对象，如果前一个指令对象的X坐标和当前指令对象的X坐标相等，则说明是垂直线
-      const isV = lenTarget.X === prev.X
+      const isV = lenTarget.x === prev.x
       if (isV) {
         //如果得到的lenTarget对象是一个垂直线，则新生成的点的X坐标是prev的X坐标，Y坐标是prev的Y坐标加上lenTarget的Y坐标的差值乘以百分比
         x = lenTarget.x
+        //20当是离开贝塞尔曲线了
         y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
       }
       // 确定lenTarget对象是一条斜线，找到它的前一个指令对象，如果前一个指令对象的X坐标和Y坐标和当前指令对象的X坐标和Y坐标不相等，则说明是斜线
-      const isS = lenTarget.X !== prev.X && lenTarget.Y !== prev.Y
+      const isS = lenTarget.x !== prev.x && lenTarget.y !== prev.y
+      console.log({ isS, isV, isH }, '---isS-isV-isH---')
       if (isS) {
+        //FIXME:这里还有问题 生成的点总是超出了区间
         //如果得到的lenTarget对象是一条斜线，则新生成的点的X坐标是prev的X坐标加上((next的X坐标减去prev的X坐标)乘以(百分比减去lenTarget的startPercent)除以lenTarget的percent)
-        x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
-        y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
+        // x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
+        // y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
+        console.log(lenTarget, prev, next, percent, '--ss--')
+        x = prev.x + ((lenTarget.x - prev.x) * (percent - lenTarget.endPercent)) / lenTarget.percent
+        y = prev.y + ((lenTarget.y - prev.y) * (percent - lenTarget.endPercent)) / lenTarget.percent
       }
-      // 插入新生成的点
-      const index = npoints.findIndex((item) => item.id === prev.id)
+
       const id = 't' + currentId++
-      // npoints[index].nextId = id
-      npoints.splice(index + 1, 0, {
+      // 插入新生成的点在目标点的前面
+      npoints.splice(targetIndex, 0, {
         id, // 新生成的点的ID
-        prevId: prev.id, // 新生成的点的上一个点是当前的前一个点
-        nextId: target.id, // 新生成的点的下一个点是当前的目标点
+        prevId: null, // 先不设置
+        nextId: null, // 先不设置
         x, // 新生成的点的X坐标
         y, // 新生成的点的Y坐标
+        color: 'yellow',
+        percent: [percent, target.startPercent, target.endPercent, target.id],
         type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
-      })
-
-      npoints.forEach((item) => {
-        //当前的目标点的prevId更新为新生成的点的ID
-        if (item.id === target.id) {
-          item.prevId = id
-        }
-        //当前的前一个点的nextId更新为新生成的点的ID
-        if (item.id === prev.id) {
-          item.nextId = id
-        }
       })
     }
   }
-
+  //更新新的指令数组的前后id关系
+  npoints.forEach((item, index) => {
+    if (index === 0) {
+      item.prevId = null
+      item.nextId = npoints[index + 1].id
+    } else if (index === npoints.length - 1) {
+      item.prevId = npoints[index - 1].id
+      item.nextId = null
+    } else {
+      item.prevId = npoints[index - 1].id
+      item.nextId = npoints[index + 1].id
+    }
+  })
+  console.log(npoints, 'npoints')
   // 返回新生成的指令数组
   return npoints
-  //3-1,例如一个点时，点落在的百分比位置则为 100%/1=100% 也就是新增点在100%的位置上
-  //3-2,例如两个点时，点落在的百分比位置则为 100%/2=50% 也就是新增点分别在50%，100%的位置上
-  //3-2. 根据新加点所在的百分比位置，计算出新加点的坐标
-
-  // // 提取所有直线段
-  // const lineSegments = []
-  // for (let i = 0; i < commands.length - 1; i++) {
-  //   const current = commands[i]
-
-  //   const directive = current?.directiveObj?.directive
-  //   // 跳过非直线段
-  //   if (!directive || ['cDirective', 'trueNode'].includes(current.type)) {
-  //     continue
-  //   }
-  //   //todo:第一轮生成逻辑
-  //   // 如果（x1,y1）和（x2,y2）两点没有贝塞尔曲线指令，且非水平线垂直线链接的，则通过直线段生成新的点
-  //   // 所有的直线都用来生成一遍了，则将最新生成的数组来进行校验寻找到两个最长的直线段的坐标点生成一个新坐标点。然后递归
-
-  //   let length = 0
-  //   const prev = updatedCommands.find((item) => item.id === current.prevId)
-  //   if (directive === 'H') {
-  //     //上一个节点的X 和当前的X的绝对值就是长度
-  //     length = Math.abs(prev.x - current.x)
-  //   } else if (directive === 'V') {
-  //     //上一个节点的Y 和当前的Y的绝对值就是长度
-  //     length = Math.abs(prev.y - current.y)
-  //   }
-  //   lineSegments.push({ ...current, directive, prev, length })
-  // }
-
-  // // 如果没有直线段，直接返回原始数组
-  // if (lineSegments.length === 0) {
-  //   return updatedCommands
-  // }
-
-  // // 按直线长度从长到短排序
-  // lineSegments.sort((a, b) => b.length - a.length)
-
-  // // 递归生成点
-  // function generatePoints(segments, numPoints) {
-  //   if (numPoints <= 0) return
-
-  //   const segment = segments[0]
-  //   if (!segment) return
-
-  //   const { prev, length, directive } = segment
-  //   let current = updatedCommands.find((item) => item.id === segment.id)
-
-  //   let midPoint = {}
-  //   // 生成中间点
-  //   // 如果这是条水平线则是X边，Y不变
-  //   if (directive === 'H') {
-  //     midPoint = {
-  //       x: (current.x + prev.x) / 2,
-  //       y: current.y,
-  //     }
-  //   } else if (directive === 'V') {
-  //     midPoint = {
-  //       x: current.x,
-  //       y: (current.y + prev.y) / 2,
-  //     }
-  //   }
-  //   // 如果这是条垂直线则是Y边，X不变
-  //   // 插入新生成的点
-  //   const index = updatedCommands.findIndex((item) => item.id === prev.id)
-  //   const id = currentId++
-  //   updatedCommands[index].nextId = id
-  //   updatedCommands.splice(index + 1, 0, {
-  //     id,
-  //     prevId: prev.id,
-  //     nextId: id,
-  //     x: midPoint.x,
-  //     y: midPoint.y,
-  //     type: 'trueNode',
-  //   })
-  //   updatedCommands.forEach((item) => {
-  //     if (item.id === current.id) {
-  //       item.prevId = id
-  //     }
-  //   })
-  //   // 更新后续点的 prevId 和 nextId
-  //   // 递归生成剩余的点
-  //   generatePoints(segments.slice(1), numPoints - 1)
-  // }
-
-  // // 生成指定数量的点
-  // generatePoints(lineSegments, totalNumPoints)
-
-  // return updatedCommands
 }
 
 // 折线
@@ -1918,7 +1848,8 @@ G6.registerEdge('customEdge', {
 })
 G6.registerNode('path-node', {
   drawShape: function drawShape(cfg, group) {
-    const color = cfg.error ? '#F4664A' : '#30BF78'
+    const directiveValue = cfg.pathsData.directiveObj?.directiveValue
+    const directive = cfg.pathsData.directiveObj?.directive
     const r = 0
     const shape = group.addShape('rect', {
       attrs: {
@@ -1926,7 +1857,6 @@ G6.registerNode('path-node', {
         y: 0,
         width: 0,
         height: 0,
-        stroke: color,
         radius: 0,
       },
       // must be assigned in G6 3.3 and later versions. it can be any string you want, but should be unique in a custom item type
@@ -2039,7 +1969,7 @@ function generateDataForLines() {
     }
     const vpoints = paths[line]
     // 根据基础数据坐标点数据来拓展展示节点
-    const points = generateAdditionalPoints(vpoints, 8)
+    const points = generateAdditionalPoints(vpoints, 3)
     const idx = line - 1
     points.forEach((point, index) => {
       const nodeId = `line-${line}-node-${index}`
@@ -2050,7 +1980,9 @@ function generateDataForLines() {
       point.offset = { x: 0, y: 0 }
       const nodeObj = {
         id: nodeId,
-        label: index === 0 ? line : ``,
+        pathsData: { ...point },
+        // label: index === 0 ? line : `line-${line}-node-${index}`,
+        label: index === 0 ? line : point.type === 'trueNode' ? `line-${line}-node-${point.id}` : `${point.directiveObj?.directive}-percent${point.percent?.toFixed(2)}`,
         type: index === 0 ? 'rect' : point.type === 'trueNode' ? 'circle' : 'path-node',
         style: {
           ...nodeStyle(idx),
@@ -2087,7 +2019,7 @@ function generateDataForLines() {
           pathsData: { ...point, prevPoint, nextPoint },
           source: `line-${line}-node-${index - 1}`,
           target: nodeId,
-          type: point.type === 'cDirective' ? 'customEdge' : 'line',
+          type: point?.directiveObj?.directive === 'c' ? 'customEdge' : 'line',
           color: colors[idx],
           style: {
             lineWidth: 5,
