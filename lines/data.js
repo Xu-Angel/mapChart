@@ -1660,6 +1660,18 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
         // 斜线的长度计算
         length = Math.sqrt((next.x - item.x) ** 2 + (next.y - item.y) ** 2)
       }
+      // 示例：计算一个三次贝塞尔曲线的长度
+      //   directiveObj: {
+      //   directive: 'c',
+      //   directiveValue: '6.626999999999981 0 12 -5.373000000000019 12 -12',
+      // },
+      // const directiveValue = item.directiveObj?.directiveValue.split(' ')
+      // const P0 = { x: prev.x, y: prev.y }
+      // const P1 = { x: P0.x + +directiveValue[0], y: P0.y + +directiveValue[1] }
+      // const P2 = { x: P1.x + +directiveValue[2] + +directiveValue[3], y: P1.y + +directiveValue[4] + +directiveValue[5] }
+      // const P3 = { x: next.x, y: next.y }
+      // length = calculateBezierLength(P0, P1, P2, P3)
+      // console.log(length, 'clength')
       item.length = 0
       npoints[index + 1].length = length
     } else {
@@ -1720,7 +1732,7 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
         type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
       })
     } else {
-      const targetIndex = npoints.findIndex((item) => item.id === target.id)
+      let targetIndex = npoints.findIndex((item) => item.id === target.id)
       // 如果百分比不为1，则新增点的坐标需要根据目标点的类型来计算
       // 寻找逻辑关系的前一个点
       //FIXME: 这里有问题，如果目标点是base，那么前一个点就不是真正的前一个点，而是当前点 这里需要优化
@@ -1733,7 +1745,7 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
       const next = npoints.find((item) => item.id === lenTarget.nextId)
       // const next = lennpoints[lentargetIndex + 1]
       // const next = npoints[lentargetIndex + 1]
-      console.log({ target, prev, next, percent }, '-prev-next-percent-')
+      // console.log({ target, prev, next, percent }, '-prev-next-percent-')
       // 新生成的点的坐标
       // 确定lenTarget对象是水平线，找到它的前一个指令对象，如果前一个指令对象的Y坐标和当前指令对象的Y坐标相等，则说明是水平线
       const isH = lenTarget.y === prev.y
@@ -1754,15 +1766,17 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
       }
       // 确定lenTarget对象是一条斜线，找到它的前一个指令对象，如果前一个指令对象的X坐标和Y坐标和当前指令对象的X坐标和Y坐标不相等，则说明是斜线
       const isS = lenTarget.x !== prev.x && lenTarget.y !== prev.y
-      console.log({ isS, isV, isH }, '---isS-isV-isH---')
+      // console.log({ isS, isV, isH }, '---isS-isV-isH---')
       if (isS) {
-        //FIXME:这里还有问题 生成的点总是超出了区间
-        //如果得到的lenTarget对象是一条斜线，则新生成的点的X坐标是prev的X坐标加上((next的X坐标减去prev的X坐标)乘以(百分比减去lenTarget的startPercent)除以lenTarget的percent)
-        // x = prev.x + ((next.x - prev.x) * (percent - lenTarget.startPercent)) / lenTarget.percent
-        // y = prev.y + ((next.y - prev.y) * (percent - lenTarget.startPercent)) / lenTarget.percent
         console.log(lenTarget, prev, next, percent, '--ss--')
-        x = prev.x + ((lenTarget.x - prev.x) * (percent - lenTarget.endPercent)) / lenTarget.percent
-        y = prev.y + ((lenTarget.y - prev.y) * (percent - lenTarget.endPercent)) / lenTarget.percent
+        // x = prev.x + (lenTarget.x - prev.x) * 0.5
+        // y = prev.y + (lenTarget.y - prev.y) * 0.5
+        x = (prev.x + lenTarget.x) * 0.5
+        y = (prev.y + lenTarget.y) * 0.5
+        //这种节点也需要自己定义前后位置
+        // x = prev.x + ((lenTarget.x - prev.x) * (percent - lenTarget.endPercent)) / lenTarget.percent
+        // y = prev.y + ((lenTarget.y - prev.y) * (percent - lenTarget.endPercent)) / lenTarget.percent
+        // targetIndex = targetIndex - 2
       }
 
       const id = 't' + currentId++
@@ -1776,6 +1790,7 @@ function generateAdditionalPoints(points = [], totalNumPoints) {
         color: 'yellow',
         percent: [percent, target.startPercent, target.endPercent, target.id],
         type: 'trueNode', // 新生成的点，用于填充后续真实业务数据
+        needCuspoint: isS,
       })
     }
   }
@@ -1809,25 +1824,24 @@ G6.registerEdge('customEdge', {
     const directiveValue = cfg.pathsData.directiveObj?.directiveValue
     const directive = cfg.pathsData.directiveObj?.directive
     let path = []
-    if (directiveValue) {
+    if (directive === 'c') {
       const cs = directiveValue.split(' ')
       //// C x1 y1 x2 y2 x y
+      // C x1 y1 x2 y2 x y
+      // c dx1 dy1 dx2 dy2 dx dy
       // path = [directive, `${cs[0] + ofx} ${cs[1] + ofy}`, `${cs[2] + ofx} ${cs[3] + ofy}`, `${cs[4] + ofx} ${cs[5] + ofy}`]
       path = [directive, `${cs[0]} ${cs[1]}`, `${cs[2]} ${cs[3]}`, `${cs[4]} ${cs[5]}`]
     }
     // console.log(path, cfg, group, 'pathpathpathpath')
     const shape = group.addShape('path', {
       attrs: {
-        stroke: cfg.color,
+        stroke: directive === 'c' ? 'red' : cfg.color,
         path: [
           // 起点开始移动到当前节点位置
-          // ['M', startPoint.x, startPoint.y],
-          ['M', prevPoint.x, prevPoint.y],
-          // C x1 y1 x2 y2 x y
-          // c dx1 dy1 dx2 dy2 dx dy
+          // ...[directive === 'c' ? ['M', prevPoint.x, prevPoint.y] : ['M', startPoint.x, startPoint.y]],
+          ...[['M', prevPoint.x, prevPoint.y]],
           path,
-          ['L', nextPoint.x, nextPoint.y], // 直线到终点
-          // ['L', endPoint.x, endPoint.y], // 直线到终点
+          ...[['L', nextPoint.x, nextPoint.y]], // 直线到终点
         ],
         lineWidth: 5,
         zIndex: 999,
@@ -1969,7 +1983,8 @@ function generateDataForLines() {
     }
     const vpoints = paths[line]
     // 根据基础数据坐标点数据来拓展展示节点
-    const points = generateAdditionalPoints(vpoints, 3)
+    const points = generateAdditionalPoints(vpoints, 4)
+    console.table(points)
     const idx = line - 1
     points.forEach((point, index) => {
       const nodeId = `line-${line}-node-${index}`
@@ -2019,7 +2034,7 @@ function generateDataForLines() {
           pathsData: { ...point, prevPoint, nextPoint },
           source: `line-${line}-node-${index - 1}`,
           target: nodeId,
-          type: point?.directiveObj?.directive === 'c' ? 'customEdge' : 'line',
+          type: point?.directiveObj?.directive === 'c' || point.needCuspoint ? 'customEdge' : 'line',
           color: colors[idx],
           style: {
             lineWidth: 5,

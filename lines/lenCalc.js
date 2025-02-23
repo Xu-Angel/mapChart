@@ -1,4 +1,10 @@
-function calculateBezierLength(P0, P1, P2, P3, steps = 1000) {
+function calculateBezierLengthFromRelative(startX, startY, dx1, dy1, dx2, dy2, dx, dy, steps = 1000) {
+  // 将相对坐标转换为绝对坐标
+  const P0 = { x: startX, y: startY }
+  const P1 = { x: startX + dx1, y: startY + dy1 }
+  const P2 = { x: P1.x + dx2, y: P1.y + dy2 }
+  const P3 = { x: P2.x + dx, y: P2.y + dy }
+
   let length = 0
   const dt = 1 / steps
 
@@ -21,10 +27,14 @@ function calculateBezierLength(P0, P1, P2, P3, steps = 1000) {
 }
 
 // 示例：计算一个三次贝塞尔曲线的长度
-const P0 = { x: 392.656, y: 766.7570000000001 }
-const P1 = { x: P0.x + 6.626999999999981, y: P0.y + 0 }
-const P2 = { x: P1.x + 12 - 5.373000000000019, y: P1.y + 12 - 12 }
-const P3 = { x: 404.656, y: 662.7683 }
+const startX = 392.656
+const startY = 766.7570000000001
+const dx1 = 6.626999999999981
+const dy1 = 0
+const dx2 = 12
+const dy2 = -5.373000000000019
+const dx = 12
+const dy = -12
 
-const length = calculateBezierLength(P0, P1, P2, P3)
+const length = calculateBezierLengthFromRelative(startX, startY, dx1, dy1, dx2, dy2, dx, dy)
 console.log(`贝塞尔曲线的长度为: ${length}`)
