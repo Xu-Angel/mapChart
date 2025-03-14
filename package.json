@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "parse-svg-path": "^0.1.2",
+    "serialize-svg-path": "^0.1.0"
+  }
+}

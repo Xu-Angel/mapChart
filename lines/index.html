@@ -2,94 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Tutorial Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Triangle Example</title>
     <style>
-      #container {
-        width: 80vw;
+      .triangle-container {
+        position: relative;
+        width: 100px; /* 根据需要调整宽度 */
+        height: 100px; /* 根据需要调整高度 */
+        border: 2px solid blue; /* 根据需要调整边框颜色和宽度 */
+        border-radius: 50%; /* 使容器呈圆形 */
+      }
+
+      .triangle-container::before {
+        content: '';
+        position: absolute;
+        bottom: -10px; /* 调整三角形底部与容器的距离 */
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid blue; /* 根据需要调整三角形颜色 */
       }
     </style>
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" width="1484" height="296" viewBox="0 0 1484 296" fill="none">
-  <path d="M0.5 195.757H196.656C203.283 195.757 208.656 190.384 208.656 183.757V91.7683C208.656 87.8588 210.56 84.1945 213.759 81.9478L266.416 44.971C268.436 43.5526 270.844 42.7915 273.312 42.7915H371.776C374.53 42.7915 377.199 41.8445 379.338 40.1093L421.76 5.6822C423.898 3.94703 426.568 3 429.322 3H1027.24C1029.78 3 1032.25 3.80438 1034.3 5.29757L1237.59 153.25C1239.64 154.743 1242.11 155.547 1244.65 155.547H1469C1475.63 155.547 1481 160.92 1481 167.547V296" stroke="#3F92FE" stroke-width="5"/>
-    <!-- <svg xmlns="http://www.w3.org/2000/svg" width="1176" height="227" viewBox="0 0 1176 227" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="343" height="703" viewBox="0 0 343 703" fill="none">
       <path
-        d="M2 3L172.04 122.728c2.022 1.424 4.435 2.188 6.908 2.188H791.275c2.473 0 4.886 0.765 6.908 2.189L846.214 160.924c2.022 1.424 4.435 2.188 6.909 2.188H956.015c2.473 0 4.886 0.765 6.909 2.188L1043.18 221.812c2.02 1.424 4.44 2.188 6.91 2.188H1176"
-        stroke="#00C29F"
+        d="M340 58.6859V0C340 62.5954 338.096 66.2598 334.896 68.5065L274.663 110.803C272.643 112.221 270.235 112.982 267.767 112.982H124.662C122.194 112.982 119.786 113.743 117.766 115.161L84.9495 138.206C81.7501 140.452 79.8456 144.117 79.8456 148.026V244.038C79.8456 247.948 81.75 251.612 84.9495 253.859L100.557 264.819C103.756 267.065 105.661 270.73 105.661 274.639V512.5C105.661 519.127 100.288 524.5 93.6609 524.5H71.831C69.3629 524.5 66.9548 525.261 64.9349 526.679L8.10391 566.587C4.90445 568.833 3 572.498 3 576.407V702.686"
+        stroke="#2E7B9C"
         stroke-width="5" />
-    </svg> -->
-    <div id="container"></div>
-    <script src="../g6.min.js"></script>
-    <script src="./data.js"></script>
-    <script>
-      var data = window.data
-      console.log(data, 'dd')
-      const container = document.getElementById('container')
-      const width = container.scrollWidth
-      const height = window.innerHeight
-      // {"x":3502,"y":1999}
-      const graph = new G6.Graph({
-        container: 'container',
-        // width: 1800,
-        // height: 1800,
-        // width: '100%',
-        // height: '100%',
-        width: 1929,
-        height: 1156,
-        <!-- fitView: true, -->
-        renderer: 'svg',
-        modes: {
-          //
-          default: ['drag-canvas', 'zoom-canvas','drag-node'],
-        },
-        animate: true,
-        defaultNode: {
-          // size: [20, 20],
-          // type: 'circle',
-          // style: {
-          //   lineWidth: 2,
-          //   stroke: '#5B8FF9',
-          //   fill: '#C6E5FF',
-          // },
-          labelCfg: {
-            position: 'bottom',
-            offset: 10,
-            style: {
-              fill: '#666',
-            },
-          },
-        },
-        defaultEdge: {
-          // type: 'polyline',
-          // size: 10,
-          // color: '#e2e2e2',
-          // style: {
-          //   // endArrow: {
-          //   //   path: 'M 0,0 L 8,4 L 8,-4 Z',
-          //   //   fill: '#e2e2e2',
-          //   // },
-          //   radius: 20,
-          // },
-        },
-      })
-      graph.data(data)
-      graph.render()
-      // 获取图上的所有节点实例
-      const rNodes = graph.getNodes()
-      const rEdges = graph.getEdges()
-      // 遍历节点实例，将所有节点提前。
-      rNodes.forEach((node) => {
-        node.toBack()
-      })
-      rEdges.forEach((edge) => {
-        edge.toFront()
-      })
-      if (typeof window !== 'undefined')
-        window.onresize = () => {
-          if (!graph || graph.get('destroyed')) return
-          if (!container || !container.scrollWidth || !container.scrollHeight) return
-          graph.changeSize(container.scrollWidth, container.scrollHeight)
-        }
-    </script>
+    </svg>
+    <div>sssss</div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="343" height="703" viewBox="0 0 343 703" fill="none">
+      <path
+        d="M3 702.686V576.407C3 572.498 4.90445 568.833 8.10391 566.587L64.9349 526.679C66.9548 525.261 69.3629 524.5 71.831 524.5H93.6609C100.288 524.5 105.661 519.127 105.661 512.5V274.639C105.661 270.73 103.756 267.065 100.557 264.819L84.9495 253.859C81.75 251.612 79.8456 247.948 79.8456 244.038V148.026C79.8456 144.117 81.7501 140.452 84.9495 138.206L117.766 115.161C119.786 113.743 122.194 112.982 124.662 112.982H267.767C270.235 112.982 272.643 112.221 274.663 110.803L334.896 68.5065C338.096 66.2598 340 62.5954 340 58.6859V0"
+        stroke="#2E7B9C"
+        stroke-width="5" />
+    </svg>
   </body>
+  <script></script>
 </html>

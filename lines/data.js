@@ -1978,7 +1978,7 @@ function generateDataForLines() {
     zIndex: -1,
   })
   Object.keys(paths).forEach((line) => {
-    if (line > 1) {
+    if (+line !== 12) {
       return
     }
     const vpoints = paths[line]
